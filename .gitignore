@@ -1,0 +1,14 @@
+Debug/
+.vs/
+*.ncb
+*.opt
+*.plg
+*.aps
+*.sdf
+*.sln
+*.suo
+*.vcxproj
+*.filters
+*.user
+*.ipch
+*.opensdf

@@ -178,6 +178,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\myusb.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -207,6 +211,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\lusb0_usb.h"
+				>
+			</File>
 			<File
 				RelativePath=".\mytest_char.h"
 				>

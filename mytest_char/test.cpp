@@ -1,12 +1,13 @@
 #include "stdafx.h"
 #include <stdio.h>
 
-
+/*
 void tt(void)
 {
 char *p="abcefghijklmn"+5;
 printf("c%",p[3]);
 }
+*/
 
 struct device {
 	char bus_id[16];
@@ -24,6 +25,9 @@ void sub_call(struct device *dev)
 		dev->bus_id, __FUNCTION__,
 		((&dev)-1) , *((unsigned *)((&dev)-1))
 	);
+
+	//debugPrintf(buf);
+	OutputDebugString(L"Kill.......................%d\n");
 }
 
 

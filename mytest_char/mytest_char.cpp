@@ -17,6 +17,46 @@ BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 
+
+//>>yuanyuan
+HBITMAP g_hbmBall = NULL;
+#define EDIT_BUF_INCREMENT 1024
+
+static HWND edit_box;
+enum
+{
+    ID_EXIT = 100,
+    ID_REFRESH,
+    ID_EDIT
+};
+static char *edit_buffer = NULL;
+
+static int edit_buffer_size = 0;
+static int edit_buffer_pos = 0;
+
+static void edit_printf(const char *s, ...)
+{
+    //va_list args;
+    //va_start(args, s);
+
+    //if (edit_buffer_size - edit_buffer_pos < EDIT_BUF_INCREMENT) {
+    //    char *tmp = realloc(edit_buffer, edit_buffer_size + EDIT_BUF_INCREMENT);
+
+    //    if (tmp) {
+    //        edit_buffer = tmp;
+    //        edit_buffer_size += EDIT_BUF_INCREMENT;
+    //    } else {
+    //        return;
+    //    }
+    //}
+
+    //edit_buffer_pos += vsnprintf(edit_buffer + edit_buffer_pos,
+    //                             EDIT_BUF_INCREMENT - 1, s, args);
+    //va_end(args);
+}
+
+//<<yuanyuan
+
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      LPTSTR    lpCmdLine,
@@ -115,8 +155,27 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
       return FALSE;
    }
 
+//YY-->
+   edit_box = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", NULL,
+                              WS_CHILD | WS_VISIBLE | WS_VSCROLL |
+                              ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL
+                              | ES_AUTOHSCROLL | ES_READONLY,
+                              CW_USEDEFAULT, CW_USEDEFAULT,
+                              CW_USEDEFAULT, CW_USEDEFAULT,
+                              hWnd, (HMENU) ID_EDIT, hInstance, NULL);
+    SendMessage(edit_box, WM_SETFONT, (WPARAM) CreateFont(13, 8, 0, 0,
+                400, 0, 0, 0,
+                0, 1, 2, 1,
+                49, L"Courier"), 0);
+
+	//SendMessage(edit_box, WM_SETTEXT, 0, (LPARAM) edit_buffer);
+	SendMessage(edit_box, WM_SETTEXT, 0, (LPARAM) "Hello0000");
+
+//<--YY
+
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
 
    return TRUE;
 }
@@ -139,6 +198,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	switch (message)
 	{
+	case WM_CREATE:
+		g_hbmBall = LoadBitmap(GetModuleHandle(NULL), L"E:\\_tmp\\yyy.bmp");
+		if(g_hbmBall == NULL)
+			MessageBox(hWnd, L"Could not load BMP!", L"Error", MB_OK | MB_ICONEXCLAMATION);
+		break;
 	case WM_COMMAND:
 		wmId    = LOWORD(wParam);
 		wmEvent = HIWORD(wParam);
@@ -165,6 +229,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO: Add any drawing code here...
+#if 1
+		if (g_hbmBall != NULL) {
+			BITMAP bm;
+			HDC hdcMem = CreateCompatibleDC(hdc);
+			HGDIOBJ hbmOld = SelectObject(hdcMem, g_hbmBall);
+			GetObject(g_hbmBall, sizeof(bm), &bm);
+			BitBlt(hdc, 0, 0, bm.bmWidth, bm.bmHeight, hdcMem, 0, 0, SRCCOPY);
+			SelectObject(hdcMem, hbmOld);
+			DeleteDC(hdcMem);
+		}
+		else {
+			TextOut(hdc, 100, 200, L"g_hbmBall is NULL", 17);
+		}
+#endif
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
