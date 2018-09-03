@@ -7,7 +7,6 @@ Debug/
 *.sdf
 *.sln
 *.suo
-*.vcxproj
 *.filters
 *.user
 *.ipch
