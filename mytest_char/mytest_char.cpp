@@ -3,6 +3,9 @@
 
 #include "stdafx.h"
 #include "mytest_char.h"
+#include <stdio.h>
+#include <io.h >
+#include <fcntl.h >
 
 #define MAX_LOADSTRING 100
 
@@ -57,6 +60,19 @@ static void edit_printf(const char *s, ...)
 
 //<<yuanyuan
 
+void InitConsoleWindow(void)
+{
+	int hCrt;
+	FILE *hf;
+	AllocConsole();
+	hCrt = _open_osfhandle((long)GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
+	hf = _fdopen(hCrt, "w");
+	*stdout = *hf;
+	setvbuf(stdout, NULL, _IONBF, 0);
+	// test code
+	fprintf(stdout, "InitConsoleWindow OK!\n");
+}
+
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      LPTSTR    lpCmdLine,
@@ -73,6 +89,11 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadString(hInstance, IDC_MYTEST_CHAR, szWindowClass, MAX_LOADSTRING);
 	MyRegisterClass(hInstance);
+
+	InitConsoleWindow();
+	extern void U_main(void);
+	U_main();
+	//return TRUE;
 
 	// Perform application initialization:
 	if (!InitInstance (hInstance, nCmdShow))
@@ -196,12 +217,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	PAINTSTRUCT ps;
 	HDC hdc;
 
+	//printf("MSG get in! %u\n", message);
 	switch (message)
 	{
 	case WM_CREATE:
-		g_hbmBall = LoadBitmap(GetModuleHandle(NULL), L"E:\\_tmp\\yyy.bmp");
-		if(g_hbmBall == NULL)
-			MessageBox(hWnd, L"Could not load BMP!", L"Error", MB_OK | MB_ICONEXCLAMATION);
+		g_hbmBall = LoadBitmap(GetModuleHandle(NULL), L"C:\\Users\\comi\\Pictures\\girl.bmp");
+		if (g_hbmBall == NULL)
+			//MessageBox(hWnd, L"Could not load BMP!", L"Error", MB_OK | MB_ICONEXCLAMATION);
+			printf("Load bmp error!\n");
 		break;
 	case WM_COMMAND:
 		wmId    = LOWORD(wParam);
