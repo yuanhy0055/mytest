@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <stdio.h>
+#include <math.h>
 
 /*
 void tt(void)
@@ -28,6 +29,13 @@ void sub_call(struct device *dev)
 
 	//debugPrintf(buf);
 	OutputDebugString(L"Kill.......................%d\n");
+
+	double fn = 200.0;
+	for (int i = 0; i < 10; i++) {
+		fn = (fn + 4/fn) / 2;
+	}
+	sprintf(buf, "\t\t%f\n\n", fn);
+	OutputDebugStringA(buf);
 }
 
 
