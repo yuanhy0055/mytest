@@ -1,8 +1,37 @@
 #include "stdafx.h"
+#include <stdio.h>
+
 static HWND edit_box;
+
+
+class People
+{
+};
+
+
+class A
+{
+public:
+	int ia;
+
+public:
+	A() { printf("构造 A\n"); }
+};
+
+class B : A
+{
+public:
+	B() { printf("构造 B\n"); }
+
+public:
+	int ib;
+};
 
 void U_main()
 {
+	printf("People size = %d\n", sizeof(People));
+
+	B b;
 	/*
     edit_box = CreateWindowEx(WS_EX_CLIENTEDGE, "EDIT", NULL,
                               WS_CHILD | WS_VISIBLE | WS_VSCROLL |
