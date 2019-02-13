@@ -2,6 +2,8 @@
     WIN32 APPLICATION : mytest_char Project Overview
 ========================================================================
 
+COM¼¼Êõ²Î¿¼ https://www.jianshu.com/p/eb19ab8d1aa8
+
 AppWizard has created this mytest_char application for you.  
 
 This file contains a summary of what you will find in each of the files that

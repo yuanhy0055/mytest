@@ -105,6 +105,8 @@
     <ClInclude Include="mytest_char.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="xxcom\faststring.h" />
+    <ClInclude Include="xxcom\ifaststring.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="mytest_char.ico" />
