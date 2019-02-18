@@ -48,7 +48,7 @@ void c_firar(struct device *p)
 
 void pc_main()
 {
-	int i;
+	//int i;
 
 	struct device aa = {
 		"1234567",
