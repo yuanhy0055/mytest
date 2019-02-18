@@ -15,13 +15,13 @@ public:
 	int ia;
 
 public:
-	A() { printf("ππ‘Ï A\n"); }
+	A() { printf("ÊûÑÈÄ† A\n"); }
 };
 
 class B : A
 {
 public:
-	B() { printf("ππ‘Ï B\n"); }
+	B() { printf("ÊûÑÈÄ† B\n"); }
 
 public:
 	int ib;
@@ -29,21 +29,13 @@ public:
 
 void U_main()
 {
-	printf("People size = %d\n", sizeof(People));
-
-	B b;
-	/*
-    edit_box = CreateWindowEx(WS_EX_CLIENTEDGE, "EDIT", NULL,
-                              WS_CHILD | WS_VISIBLE | WS_VSCROLL |
-                              ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL
-                              | ES_AUTOHSCROLL | ES_READONLY,
-                              CW_USEDEFAULT, CW_USEDEFAULT,
-                              CW_USEDEFAULT, CW_USEDEFAULT,
-                              main_win, (HMENU) ID_EDIT, instance, NULL);
-
-    SendMessage(edit_box, WM_SETFONT, (WPARAM) CreateFont(13, 8, 0, 0,
-                400, 0, 0, 0,
-                0, 1, 2, 1,
-                49, "Courier"), 0);
-	*/
+	HINSTANCE hDll;	//DLLÂè•ÊüÑ
+	hDll = LoadLibrary(L"..\\Debug\\FastDll.dll");
+	if (hDll != NULL) {
+		printf("Load DLL Ok!\n");
+		FreeLibrary(hDll);
+	}
+	else {
+		printf("Load FastDll.dll Error\n");
+	}
 }

@@ -1,4 +1,4 @@
-// mytest_char.cpp : Defines the entry point for the application.
+﻿// mytest_char.cpp : Defines the entry point for the application.
 //
 
 #include "stdafx.h"
@@ -190,13 +190,14 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
                 49, L"Courier"), 0);
 
 	//SendMessage(edit_box, WM_SETTEXT, 0, (LPARAM) edit_buffer);
-	SendMessage(edit_box, WM_SETTEXT, 0, (LPARAM) "Hello0000");
+	SendMessage(hWnd, WM_SETTEXT, 0, (LPARAM) L"Hello0000");
 
 //<--YY
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
+   SendMessage(hWnd, WM_SYSCOMMAND, SC_MINIMIZE, 0); // 最小化
 
    return TRUE;
 }
