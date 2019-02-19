@@ -15,24 +15,29 @@ public:
 	int ia;
 
 public:
-	A() { printf("ÊûÑÈÄ† A\n"); }
+	A() { printf("ππ‘Ï A\n"); }
 };
 
 class B : A
 {
 public:
-	B() { printf("ÊûÑÈÄ† B\n"); }
+	B() { printf("ππ‘Ï B\n"); }
 
 public:
 	int ib;
 };
 
+typedef int(*lpAddFun)(int, int); //∫Í∂®“Â∫Ø ˝÷∏’Î¿‡–Õ
+lpAddFun __declspec(dllimport) add(int a, int b);
+
 void U_main()
 {
-	HINSTANCE hDll;	//DLLÂè•ÊüÑ
+	HINSTANCE hDll;	//DLLæ‰±˙
 	hDll = LoadLibrary(L"..\\Debug\\FastDll.dll");
 	if (hDll != NULL) {
 		printf("Load DLL Ok!\n");
+		lpAddFun pfunc = (lpAddFun)GetProcAddress(hDll, "add");
+		printf("Call (3, 7) = %d\n", pfunc(3, 7));
 		FreeLibrary(hDll);
 	}
 	else {
