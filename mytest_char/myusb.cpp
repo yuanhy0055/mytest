@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include <stdio.h>
 
+#include "../FastDll/FastString.h"
+
 static HWND edit_box;
 
 
@@ -38,6 +40,11 @@ void U_main()
 		printf("Load DLL Ok!\n");
 		lpAddFun pfunc = (lpAddFun)GetProcAddress(hDll, "add");
 		printf("Call (3, 7) = %d\n", pfunc(3, 7));
+
+		//FastString *fstr = new FastString("abcde");
+		//fstr->Find("123");
+		//delete fstr;
+
 		FreeLibrary(hDll);
 	}
 	else {

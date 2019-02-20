@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mytest_char", "mytest_char\mytest_char.vcxproj", "{74ADA693-0292-4DEB-853A-4925F11C8C5D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{18E62D62-83EE-4470-82B3-A02B9BD98589} = {18E62D62-83EE-4470-82B3-A02B9BD98589}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FastDll", "FastDll\FastDll.vcxproj", "{18E62D62-83EE-4470-82B3-A02B9BD98589}"
 EndProject
