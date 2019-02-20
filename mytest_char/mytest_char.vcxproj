@@ -98,17 +98,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="test.cpp" />
-    <ClCompile Include="xxcom\faststring.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lusb0_usb.h" />
     <ClInclude Include="mytest_char.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="xxcom\faststring.h" />
-    <ClInclude Include="xxcom\ifaststring.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="mytest_char.ico" />
