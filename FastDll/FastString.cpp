@@ -7,11 +7,15 @@ FastString::FastString(const char *psz)
 {
 	m_psz = new char[strlen(psz)+1];
 	strcpy(m_psz, psz);
+
+	printf("------ ^FastString\n");
 }
 
 FastString::~FastString()
 {
 	delete[] m_psz;
+
+	printf("------ ~FastString\n");
 }
 
 int FastString::Length() const
@@ -21,7 +25,7 @@ int FastString::Length() const
 
 int FastString::Find(const char * psz) const
 {
-	printf("Func in progress...\n");
+	printf("Find in progress...\n");
 	return 7;
 }
 

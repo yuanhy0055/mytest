@@ -47,7 +47,7 @@ void U_main()
 		crtFstr CreateFastString = (crtFstr)GetProcAddress(hDll, "CreateFastString");
 		FastString *fstr = CreateFastString("abcde");
 		int LEN = fstr->Length();
-		//fstr->Find("123");
+		fstr->Find("123");
 		//delete fstr;
 
 		FreeLibrary(hDll);
@@ -55,4 +55,6 @@ void U_main()
 	else {
 		printf("Load FastDll.dll Error\n");
 	}
+
+	printf("U_main===end===\n");
 }

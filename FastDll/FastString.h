@@ -1,5 +1,6 @@
-﻿#pragma once
-class FastString
+﻿#include "IFastString.h"
+
+class FastString : public IFastString
 {
 	char *m_psz;
 public:
