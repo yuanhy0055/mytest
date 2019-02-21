@@ -31,6 +31,8 @@ public:
 
 typedef int(*lpAddFun)(int, int); //宏定义函数指针类型
 lpAddFun __declspec(dllimport) add(int a, int b);
+typedef FastString *(*crtFstr)(const char *);
+crtFstr __declspec(dllimport) CreateFastString(const char* psz);
 
 void U_main()
 {
@@ -38,10 +40,18 @@ void U_main()
 	hDll = LoadLibrary(L"..\\Debug\\FastDll.dll");
 	if (hDll != NULL) {
 		printf("Load DLL Ok!\n");
-		lpAddFun pfunc = (lpAddFun)GetProcAddress(hDll, "add");
-		printf("Call (3, 7) = %d\n", pfunc(3, 7));
+		lpAddFun add = (lpAddFun)GetProcAddress(hDll, "add");
+		printf("Call (3, 7) = %d\n", add(3, 7));
 
 		//FastString *fstr = new FastString("abcde");
+		crtFstr CreateFastString = (crtFstr)GetProcAddress(hDll, "CreateFastString");
+		FastString *fstr = CreateFastString("abcde");
+		void *p = &(fstr->FPP);
+		int Qlens = *((int *)p);
+		int(*Calti)(void) = (int(*)())Qlens;
+		printf("Qlens=%p\n", Qlens);
+		int L = (*Calti)();
+		printf("Qlens=%p, L=%d\n", Qlens, L);
 		//fstr->Find("123");
 		//delete fstr;
 

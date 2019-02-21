@@ -3,6 +3,8 @@ class __declspec(dllexport) FastString
 {
 	char *m_psz;
 public:
+	int (FastString::*FPP)(void) const;
+public:
 	FastString(const char *psz);
 	~FastString(void);
 	int Length(void) const;				// 返回字符数目
