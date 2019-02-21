@@ -30,3 +30,9 @@ int add(int x, int y)
 {
 	return x+y+10000;
 }
+
+extern "C" __declspec(dllexport) FastString*  CreateFastString(const char* psz);
+FastString * CreateFastString(const char * psz)
+{
+	return new FastString(psz);
+}

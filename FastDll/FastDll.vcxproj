@@ -148,7 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="FastString.h" />
-    <ClInclude Include="FastStringItf.h" />
+    <ClInclude Include="IFastString.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -156,7 +156,6 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="FastDll.cpp" />
     <ClCompile Include="FastString.cpp" />
-    <ClCompile Include="FastStringItf.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
