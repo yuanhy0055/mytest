@@ -1,0 +1,7 @@
+Using interface FastStringItf - FAILED 
+---
+[http://su.chainfire.eu/](http://su.chainfire.eu/)
+Gradle:
+dependencies {
+    compile 'eu.chainfire:libsuperuser:1.0.0.+'
+}

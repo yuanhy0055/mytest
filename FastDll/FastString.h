@@ -1,9 +1,7 @@
 ﻿#pragma once
-class __declspec(dllexport) FastString
+class FastString
 {
 	char *m_psz;
-public:
-	int (FastString::*FPP)(void) const;
 public:
 	FastString(const char *psz);
 	~FastString(void);

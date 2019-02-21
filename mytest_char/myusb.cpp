@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include <stdio.h>
 
-#include "../FastDll/FastString.h"
+#include "../FastDll/FastStringItf.h"
 
 static HWND edit_box;
 
@@ -31,7 +31,7 @@ public:
 
 typedef int(*lpAddFun)(int, int); //宏定义函数指针类型
 lpAddFun __declspec(dllimport) add(int a, int b);
-typedef FastString *(*crtFstr)(const char *);
+typedef FastStringItf *(*crtFstr)(const char *);
 crtFstr __declspec(dllimport) CreateFastString(const char* psz);
 
 void U_main()
@@ -45,13 +45,8 @@ void U_main()
 
 		//FastString *fstr = new FastString("abcde");
 		crtFstr CreateFastString = (crtFstr)GetProcAddress(hDll, "CreateFastString");
-		FastString *fstr = CreateFastString("abcde");
-		void *p = &(fstr->FPP);
-		int Qlens = *((int *)p);
-		int(*Calti)(void) = (int(*)())Qlens;
-		printf("Qlens=%p\n", Qlens);
-		int L = (*Calti)();
-		printf("Qlens=%p, L=%d\n", Qlens, L);
+		FastStringItf *fstr = CreateFastString("abcde");
+		int LEN = fstr->Length();
 		//fstr->Find("123");
 		//delete fstr;
 

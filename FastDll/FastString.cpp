@@ -7,11 +7,6 @@ FastString::FastString(const char *psz)
 {
 	m_psz = new char[strlen(psz)+1];
 	strcpy(m_psz, psz);
-
-	printf("Length() = %p\n",&FastString::Length);
-	FPP = &FastString::Length;
-	printf("FPP = %p\n", FPP);
-	printf("Object = %p\n", this);
 }
 
 FastString::~FastString()
@@ -21,9 +16,7 @@ FastString::~FastString()
 
 int FastString::Length() const
 {
-	return 9;
 	return strlen(m_psz);
-
 }
 
 int FastString::Find(const char * psz) const
@@ -36,11 +29,4 @@ extern "C" { __declspec(dllexport) int add(int x, int y); }
 int add(int x, int y)
 {
 	return x+y+10000;
-}
-
-extern "C" __declspec(dllexport) FastString*  CreateFastString(const char* psz);
-FastString * CreateFastString(const char * psz)
-{
-	//return nullptr;
-	return new FastString(psz);
 }
