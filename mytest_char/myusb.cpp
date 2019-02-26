@@ -49,6 +49,7 @@ void U_main()
 		int LEN = fstr->Length();
 		fstr->Find("123");
 		//delete fstr;
+		fstr->Delete();
 
 		FreeLibrary(hDll);
 	}

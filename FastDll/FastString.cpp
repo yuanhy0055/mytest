@@ -18,6 +18,11 @@ FastString::~FastString()
 	printf("------ ~FastString\n");
 }
 
+void FastString::Delete()
+{
+	delete this;
+}
+
 int FastString::Length() const
 {
 	return strlen(m_psz);
