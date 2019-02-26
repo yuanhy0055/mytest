@@ -34,6 +34,12 @@ int FastString::Find(const char * psz) const
 	return 7;
 }
 
+int FastString::FindN(const char * psz, int n) const
+{
+	printf("New Find%d ...\n", n);
+	return 8;
+}
+
 extern "C" { __declspec(dllexport) int add(int x, int y); }
 int add(int x, int y)
 {

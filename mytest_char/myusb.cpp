@@ -48,6 +48,7 @@ void U_main()
 		FastString *fstr = CreateFastString("abcde");
 		int LEN = fstr->Length();
 		fstr->Find("123");
+		fstr->FindN("aoe", 1);
 		//delete fstr;
 		fstr->Delete();
 
