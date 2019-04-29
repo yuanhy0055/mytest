@@ -85,16 +85,15 @@ void TT_pi(void)
 		Y = rand();
 		R2 = X * X + Y * Y;
 
-		if (R2 >= 32767*32767) {
-			N = N + 1;
-		}
-		else {
+		if (R2 <= 32767*32767) {
 			M = M + 1;
+		} else {
+			N = N + 1;
 		}
 
 		i = i + 1;
 
-	} while (i < 1001);
+	} while ( !(i>1000));
 
-	printf("N=%d, M=%d ....... %f\n", N, M, 4.0*M/(N+M));
+	printf("N=%d, M=%d ....... %f\n", N, M, M/250.0);
 }
