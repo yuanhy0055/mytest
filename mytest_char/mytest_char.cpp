@@ -164,42 +164,41 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   HWND hWnd;
+	HWND hWnd;
 
-   hInst = hInstance; // Store instance handle in our global variable
+	hInst = hInstance; // Store instance handle in our global variable
 
-   hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
+	hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
 
-   if (!hWnd)
-   {
-      return FALSE;
-   }
+	if (!hWnd)
+	{
+		return FALSE;
+	}
 
-//YY-->
-   edit_box = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", NULL,
-                              WS_CHILD | WS_VISIBLE | WS_VSCROLL |
-                              ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL
-                              | ES_AUTOHSCROLL | ES_READONLY,
-                              CW_USEDEFAULT, CW_USEDEFAULT,
-                              CW_USEDEFAULT, CW_USEDEFAULT,
-                              hWnd, (HMENU) ID_EDIT, hInstance, NULL);
-    SendMessage(edit_box, WM_SETFONT, (WPARAM) CreateFont(13, 8, 0, 0,
-                400, 0, 0, 0,
-                0, 1, 2, 1,
-                49, L"Courier"), 0);
+	//YY-->
+	edit_box = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", NULL,
+		WS_CHILD | WS_VISIBLE | WS_VSCROLL |
+		ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL
+		| ES_AUTOHSCROLL | ES_READONLY,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		CW_USEDEFAULT, CW_USEDEFAULT,
+		hWnd, (HMENU)ID_EDIT, hInstance, NULL);
+	SendMessage(edit_box, WM_SETFONT, (WPARAM)CreateFont(13, 8, 0, 0,
+		400, 0, 0, 0,
+		0, 1, 2, 1,
+		49, L"Courier"), 0);
 
 	//SendMessage(edit_box, WM_SETTEXT, 0, (LPARAM) edit_buffer);
 	SendMessage(hWnd, WM_SETTEXT, 0, (LPARAM) L"Hello0000");
 
 //<--YY
+	ShowWindow(hWnd, nCmdShow);
+	UpdateWindow(hWnd);
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+	SendMessage(hWnd, WM_SYSCOMMAND, SC_MINIMIZE, 0); // 最小化
 
-   SendMessage(hWnd, WM_SYSCOMMAND, SC_MINIMIZE, 0); // 最小化
-
-   return TRUE;
+	return TRUE;
 }
 
 //
@@ -222,7 +221,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		g_hbmBall = LoadBitmap(GetModuleHandle(NULL), L"C:\\Users\\comi\\Pictures\\girl.bmp");
 		g_hbmBall = (HBITMAP)LoadImage(
 			GetModuleHandle(NULL), L"E:\\Nico\\Pictures\\girl.bmp",
 			IMAGE_BITMAP, 0, 0,	LR_LOADFROMFILE|LR_CREATEDIBSECTION);
@@ -256,7 +254,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO: Add any drawing code here...
-#if 1
+
 		if (g_hbmBall != NULL) {
 			BITMAP bm;
 			HDC hdcMem = CreateCompatibleDC(hdc);
@@ -271,7 +269,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 2));
 			TextOut(hdc, 100, 200, L"g_hbmBall is NULL", 17);
 		}
-#endif
+
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
