@@ -38,11 +38,12 @@ IDI_SMALL               ICON                    "small.ico"
 // Menu
 //
 
-IDC_MYTEST_CHAR MENU 
+IDC_MYTEST_CHAR MENU
 BEGIN
     POPUP "&File"
     BEGIN
         MENUITEM "E&xit",                       IDM_EXIT
+        MENUITEM "TT",                          IDM_FILE_TT
     END
     POPUP "&Help"
     BEGIN
@@ -57,7 +58,7 @@ END
 // Accelerator
 //
 
-IDC_MYTEST_CHAR ACCELERATORS 
+IDC_MYTEST_CHAR ACCELERATORS
 BEGIN
     "?",            IDM_ABOUT,              ASCII,  ALT
     "/",            IDM_ABOUT,              ASCII,  ALT
@@ -115,7 +116,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -131,7 +132,7 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_APP_TITLE           "mytest_char"
     IDC_MYTEST_CHAR         "MYTEST_CHAR"

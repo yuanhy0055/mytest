@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 
 /*
 void tt(void)
@@ -67,4 +68,33 @@ void pc_main()
 	while(k101[i])
 		printf("%02x ", k101[i++]);
 */
+}
+
+void TT_pi(void)
+{
+	int M = 0;
+	int N = 0;
+	int i = 1;
+
+	unsigned int X, Y, R2 = 0;
+
+	srand((unsigned)time(NULL));
+
+	do {
+		X = rand();
+		Y = rand();
+		R2 = X * X + Y * Y;
+
+		if (R2 >= 32767*32767) {
+			N = N + 1;
+		}
+		else {
+			M = M + 1;
+		}
+
+		i = i + 1;
+
+	} while (i < 1001);
+
+	printf("N=%d, M=%d ....... %f\n", N, M, 4.0*M/(N+M));
 }
