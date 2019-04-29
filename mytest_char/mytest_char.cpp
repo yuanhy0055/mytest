@@ -141,7 +141,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.hInstance		= hInstance;
 	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MYTEST_CHAR));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
-	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
+	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+2);
 	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_MYTEST_CHAR);
 	wcex.lpszClassName	= szWindowClass;
 	wcex.hIconSm		= LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
@@ -269,6 +269,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			TextOut(hdc, 100, 200, L"g_hbmBall is NULL", 17);
 		}
 
+		// <<The GDI in Windows API>>
+		// http://zetcode.com/gui/winapi/gdi/
 		SetPixel(hdc, 10, 410, RGB(0, 0xFF, 0));  // green
 		RECT r;
 		GetClientRect(hWnd, &r);
