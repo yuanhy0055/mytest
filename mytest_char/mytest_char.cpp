@@ -91,9 +91,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	MyRegisterClass(hInstance);
 
 	InitConsoleWindow();
-	extern void U_main(void);
-	U_main();
-	//return TRUE;
 
 	// Perform application initialization:
 	if (!InitInstance (hInstance, nCmdShow))
@@ -177,26 +174,26 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	}
 
 	//YY-->
-	edit_box = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", NULL,
-		WS_CHILD | WS_VISIBLE | WS_VSCROLL |
-		ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL
-		| ES_AUTOHSCROLL | ES_READONLY,
-		CW_USEDEFAULT, CW_USEDEFAULT,
-		CW_USEDEFAULT, CW_USEDEFAULT,
-		hWnd, (HMENU)ID_EDIT, hInstance, NULL);
-	SendMessage(edit_box, WM_SETFONT, (WPARAM)CreateFont(13, 8, 0, 0,
-		400, 0, 0, 0,
-		0, 1, 2, 1,
-		49, L"Courier"), 0);
+	//edit_box = CreateWindowEx(WS_EX_CLIENTEDGE, L"EDIT", NULL,
+	//	WS_CHILD | WS_VISIBLE | WS_VSCROLL |
+	//	ES_LEFT | ES_MULTILINE | ES_AUTOVSCROLL
+	//	| ES_AUTOHSCROLL | ES_READONLY,
+	//	CW_USEDEFAULT, CW_USEDEFAULT,
+	//	CW_USEDEFAULT, CW_USEDEFAULT,
+	//	hWnd, (HMENU)ID_EDIT, hInstance, NULL);
+	//SendMessage(edit_box, WM_SETFONT, (WPARAM)CreateFont(13, 8, 0, 0,
+	//	400, 0, 0, 0,
+	//	0, 1, 2, 1,
+	//	49, L"Courier"), 0);
 
 	//SendMessage(edit_box, WM_SETTEXT, 0, (LPARAM) edit_buffer);
-	SendMessage(hWnd, WM_SETTEXT, 0, (LPARAM) L"Hello0000");
 
 //<--YY
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 
-	SendMessage(hWnd, WM_SYSCOMMAND, SC_MINIMIZE, 0); // 最小化
+	SendMessage(hWnd, WM_SETTEXT, 0, (LPARAM)L"Hello0000");
+	//SendMessage(hWnd, WM_SYSCOMMAND, SC_MINIMIZE, 0); // 最小化
 
 	return TRUE;
 }
@@ -243,6 +240,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			//	;
 			extern void pc_main();
 			pc_main();
+			extern void U_main(void);
+			U_main();
 			break;
 		case IDM_EXIT:
 			DestroyWindow(hWnd);
@@ -270,6 +269,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			TextOut(hdc, 100, 200, L"g_hbmBall is NULL", 17);
 		}
 
+		SetPixel(hdc, 10, 410, RGB(0, 0xFF, 0));  // green
+		RECT r;
+		GetClientRect(hWnd, &r);
+		for (int i = 0; i < 1000; i++) {
+			int x = rand() % r.right;
+			int y = rand() % r.bottom;
+			SetPixel(hdc, x, y, RGB(255, 0, 0));
+		}
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
