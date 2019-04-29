@@ -223,6 +223,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 		g_hbmBall = LoadBitmap(GetModuleHandle(NULL), L"C:\\Users\\comi\\Pictures\\girl.bmp");
+		g_hbmBall = (HBITMAP)LoadImage(
+			GetModuleHandle(NULL), L"E:\\Nico\\Pictures\\girl.bmp",
+			IMAGE_BITMAP, 0, 0,	LR_LOADFROMFILE|LR_CREATEDIBSECTION);
 		if (g_hbmBall == NULL)
 			//MessageBox(hWnd, L"Could not load BMP!", L"Error", MB_OK | MB_ICONEXCLAMATION);
 			printf("Load bmp error!\n");
@@ -259,11 +262,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			HDC hdcMem = CreateCompatibleDC(hdc);
 			HGDIOBJ hbmOld = SelectObject(hdcMem, g_hbmBall);
 			GetObject(g_hbmBall, sizeof(bm), &bm);
+			memset(bm.bmBits, 0, 1800*200);
 			BitBlt(hdc, 0, 0, bm.bmWidth, bm.bmHeight, hdcMem, 0, 0, SRCCOPY);
 			SelectObject(hdcMem, hbmOld);
 			DeleteDC(hdcMem);
 		}
 		else {
+			FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 2));
 			TextOut(hdc, 100, 200, L"g_hbmBall is NULL", 17);
 		}
 #endif
